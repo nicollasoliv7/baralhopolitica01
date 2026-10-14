@@ -17,10 +17,17 @@ details summary::-webkit-details-marker{display:none}
 <style>
 .prints{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;margin:0 -20px;padding:4px 20px 18px;list-style:none;scroll-padding:0 20px;scrollbar-width:none}
 .prints::-webkit-scrollbar{display:none}
-.prints>li{flex:0 0 76%;max-width:300px;scroll-snap-align:start}
-.print-card{margin:0;background:#FFFFFF;border:2px solid #16161A;border-radius:16px;box-shadow:5px 5px 0 #16161A;padding:8px}
-.print-card img{display:block;width:100%;height:auto;aspect-ratio:267/824;border-radius:10px;background:#0E0E12}
-@media (min-width:760px){.prints{display:grid;grid-template-columns:repeat(3,minmax(0,300px));gap:28px;overflow:visible;margin:0;padding:4px 6px 6px 0}.prints>li{max-width:none}}
+.prints>li{flex:0 0 72%;max-width:290px;scroll-snap-align:start}
+.print-card{margin:0;background:#FFFFFF;border:2px solid #16161A;border-radius:22px;box-shadow:5px 5px 0 #16161A;padding:7px}
+.print-open{display:block;position:relative;width:100%;aspect-ratio:9/19.5;padding:0;border:0;border-radius:15px;overflow:hidden;background:#0E0E12;cursor:zoom-in}
+.print-open img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
+.print-open::after{content:"";position:absolute;inset:auto 0 0 0;height:22%;background:linear-gradient(rgba(14,14,18,0),#0E0E12 78%);pointer-events:none}
+.print-open span{position:absolute;left:50%;bottom:12px;transform:translateX(-50%);z-index:1;white-space:nowrap;background:#FFFFFF;color:#16161A;font:700 13px 'Public Sans',sans-serif;padding:7px 12px;border-radius:999px}
+.print-zoom{padding:0;border:0;background:transparent;max-width:min(92vw,420px);max-height:92vh;overflow:visible}
+.print-zoom::backdrop{background:rgba(22,22,26,.82)}
+.print-zoom img{display:block;max-width:100%;max-height:calc(92vh - 60px);width:auto;height:auto;border-radius:14px;margin:0 auto}
+.print-zoom button{display:block;margin:12px auto 0;min-height:44px;padding:0 20px;border:2px solid #FFFFFF;border-radius:999px;background:#16161A;color:#FFFFFF;font:700 15px 'Public Sans',sans-serif;cursor:pointer}
+@media (min-width:760px){.prints{display:grid;grid-template-columns:repeat(3,minmax(0,280px));gap:28px;overflow:visible;margin:0;padding:4px 6px 6px 0}.prints>li{max-width:none}}
 </style>
 </head>
 <body>
@@ -163,10 +170,11 @@ details summary::-webkit-details-marker{display:none}
 </div>
 </div>
 <ul class="prints" aria-label="Conversas de exemplo">
-<li><figure class="print-card"><img src="img/depoimentos/print-1.webp" width="341" height="1052" loading="lazy" decoding="async" alt="Exemplo de conversa: a pessoa conta que o tio bolsonarista concordou com a frase da carta e só depois viu de quem era, e ficou sem reação."></figure></li>
-<li><figure class="print-card"><img src="img/depoimentos/print-2.webp" width="326" height="1006" loading="lazy" decoding="async" alt="Exemplo de conversa: o baralho no almoço de domingo fez a família conversar sem briga, mesmo discordando."></figure></li>
-<li><figure class="print-card"><img src="img/depoimentos/print-3.webp" width="267" height="824" loading="lazy" decoding="async" alt="Exemplo de conversa: a pessoa usou uma carta com um cliente e ele concordou com o ponto, ficando mais receptivo."></figure></li>
+<li><figure class="print-card"><button type="button" class="print-open" aria-label="Ver a conversa inteira"><img src="img/depoimentos/print-1.webp" width="341" height="824" loading="lazy" decoding="async" alt="Exemplo de conversa: a pessoa conta que o tio bolsonarista concordou com a frase da carta e só depois viu de quem era, e ficou sem reação."><span>Toque para ver inteira</span></button></figure></li>
+<li><figure class="print-card"><button type="button" class="print-open" aria-label="Ver a conversa inteira"><img src="img/depoimentos/print-2.webp" width="326" height="824" loading="lazy" decoding="async" alt="Exemplo de conversa: o baralho no almoço de domingo fez a família conversar sem briga, mesmo discordando."><span>Toque para ver inteira</span></button></figure></li>
+<li><figure class="print-card"><button type="button" class="print-open" aria-label="Ver a conversa inteira"><img src="img/depoimentos/print-3.webp" width="267" height="824" loading="lazy" decoding="async" alt="Exemplo de conversa: a pessoa usou uma carta com um cliente e ele concordou com o ponto, ficando mais receptivo."><span>Toque para ver inteira</span></button></figure></li>
 </ul>
+<dialog class="print-zoom" aria-label="Conversa ampliada"><img src="" alt=""><button type="button">Fechar</button></dialog>
 </section>
 
 <section id="oferta"style="max-width: 1120px; margin: 0 auto; padding: 72px 20px; display: flex; flex-wrap: wrap; gap: 48px; align-items: flex-start;">
@@ -246,6 +254,17 @@ details summary::-webkit-details-marker{display:none}
 // Link do checkout (Kiwify, Hotmart etc.). Troque pelo seu.
 var CHECKOUT_URL = "https://SEU-CHECKOUT-AQUI";
 document.querySelectorAll('[data-checkout]').forEach(function (a) { a.href = CHECKOUT_URL; });
+var zoom = document.querySelector('.print-zoom');
+if (zoom && zoom.showModal) {
+  var zimg = zoom.querySelector('img');
+  document.querySelectorAll('.print-open').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var i = b.querySelector('img'); zimg.src = i.currentSrc || i.src; zimg.alt = i.alt; zoom.showModal();
+    });
+  });
+  zoom.querySelector('button').addEventListener('click', function () { zoom.close(); });
+  zoom.addEventListener('click', function (e) { if (e.target === zoom) zoom.close(); });
+}
 var front = document.getElementById('card-front');
 var back = document.getElementById('card-back');
 var label = document.getElementById('answer-label');
