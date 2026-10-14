@@ -14,6 +14,16 @@ details summary{cursor:pointer;list-style:none}
 details summary::-webkit-details-marker{display:none}
 </style>
 <style>[hidden]{display:none!important}button{-webkit-appearance:none;appearance:none}</style>
+<style>
+.prints{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;margin:0 -20px;padding:4px 20px 18px;list-style:none;scroll-padding:0 20px;scrollbar-width:thin;scrollbar-color:#16161A transparent}
+.prints>li{flex:0 0 auto;scroll-snap-align:start}
+.print-card{margin:0;background:#FFFFFF;border:2px solid #16161A;border-radius:16px;box-shadow:5px 5px 0 #16161A;padding:8px}
+.print-card img{display:block;height:clamp(440px,74vh,680px);width:auto;max-width:none;border-radius:10px;background:#0E0E12}
+.prints-nav{display:none;gap:10px}
+.prints-nav button{width:48px;height:48px;border:2px solid #16161A;border-radius:999px;background:#FFFFFF;color:#16161A;font:700 20px/1 'Public Sans',sans-serif;cursor:pointer}
+.prints-nav button:hover{background:#16161A;color:#FFFFFF}
+@media (min-width:760px){.prints{margin:0;padding:4px 6px 18px 0;scroll-padding:0}.prints-nav{display:flex}}
+</style>
 </head>
 <body>
 <div style="background: #F3F1EC; color: #16161A; font-family: 'Public Sans', system-ui, sans-serif; font-size: 17px; line-height: 1.55; min-height: 100vh;">
@@ -147,7 +157,31 @@ details summary::-webkit-details-marker{display:none}
 </div>
 </section>
 
-<section id="oferta" style="max-width: 1120px; margin: 0 auto; padding: 72px 20px; display: flex; flex-wrap: wrap; gap: 48px; align-items: flex-start;">
+<section id="exemplos" aria-labelledby="exemplos-titulo" style="max-width: 1120px; margin: 0 auto; padding: 72px 20px 0; display: flex; flex-direction: column; gap: 20px;">
+<div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-end; justify-content: space-between;">
+<div style="flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 12px; max-width: 760px;">
+<span style="align-self: flex-start; border: 1.5px solid #8E1B2C; color: #8E1B2C; border-radius: 999px; padding: 5px 12px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;">Exemplos ilustrativos</span>
+<h2 id="exemplos-titulo" style="margin: 0; font-family: 'Archivo', sans-serif; font-weight: 900; font-stretch: 80%; font-size: clamp(30px, 4vw, 44px); text-transform: uppercase; line-height: 1;">É assim que a conversa pode virar</h2>
+<p style="margin: 0; font-size: 18px; color: #3A3A42;">Conversas de exemplo para mostrar o jogo em ação: no almoço de família, no churrasco, com o amigo que só discute. <strong style="color: #16161A;">Não são relatos de clientes.</strong></p>
+</div>
+<div class="prints-nav">
+<button type="button" data-prints="-1" aria-label="Conversa anterior">&larr;</button>
+<button type="button" data-prints="1" aria-label="Próxima conversa">&rarr;</button>
+</div>
+</div>
+<ul class="prints" aria-label="Conversas de exemplo">
+<li><figure class="print-card"><img src="img/depoimentos/print-1.webp" width="341" height="824" loading="lazy" decoding="async" alt="Exemplo de conversa: a pessoa conta que o tio bolsonarista concordou com a frase da carta e só depois viu de quem era, e ficou sem reação."></figure></li>
+<li><figure class="print-card"><img src="img/depoimentos/print-2.webp" width="326" height="824" loading="lazy" decoding="async" alt="Exemplo de conversa: o baralho no almoço de domingo fez a família conversar sem briga, mesmo discordando."></figure></li>
+<li><figure class="print-card"><img src="img/depoimentos/print-3.webp" width="267" height="824" loading="lazy" decoding="async" alt="Exemplo de conversa: a pessoa usou uma carta com um cliente e ele concordou com o ponto, ficando mais receptivo."></figure></li>
+<li><figure class="print-card"><img src="img/depoimentos/print-4.webp" width="261" height="841" loading="lazy" decoding="async" alt="Exemplo de conversa: a pessoa recebeu o baralho, achou bem feito e vai testar com a família no fim de semana."></figure></li>
+<li><figure class="print-card"><img src="img/depoimentos/print-5.webp" width="222" height="841" loading="lazy" decoding="async" alt="Exemplo de conversa: a pessoa usa as cartas com amigos quando o assunto esquenta e a conversa muda na hora."></figure></li>
+<li><figure class="print-card"><img src="img/depoimentos/print-6.webp" width="223" height="841" loading="lazy" decoding="async" alt="Exemplo de conversa: o pai conservador curtiu a ideia da carta antes de saber que era do jogo; não mudou de opinião, mas não virou discussão."></figure></li>
+<li><figure class="print-card"><img src="img/depoimentos/print-7.webp" width="227" height="841" loading="lazy" decoding="async" alt="Exemplo de conversa: no churrasco, uma carta fez o pessoal trocar ideias sem brigar."></figure></li>
+</ul>
+<p style="margin: 0; font-size: 13px; color: #4A4A52;">Prints ilustrativos, criados para demonstrar o uso do baralho. Nomes e fotos ocultados.</p>
+</section>
+
+<section id="oferta"style="max-width: 1120px; margin: 0 auto; padding: 72px 20px; display: flex; flex-wrap: wrap; gap: 48px; align-items: flex-start;">
 <div style="flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 16px;">
 <h2 style="margin: 0; font-family: 'Archivo', sans-serif; font-weight: 900; font-stretch: 80%; font-size: clamp(30px, 4vw, 44px); text-transform: uppercase; line-height: 1;">Tudo isso por R$ 9,90</h2>
 <ul style="margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 10px;">
@@ -224,6 +258,12 @@ details summary::-webkit-details-marker{display:none}
 // Link do checkout (Kiwify, Hotmart etc.). Troque pelo seu.
 var CHECKOUT_URL = "https://SEU-CHECKOUT-AQUI";
 document.querySelectorAll('[data-checkout]').forEach(function (a) { a.href = CHECKOUT_URL; });
+var prints = document.querySelector('.prints');
+document.querySelectorAll('[data-prints]').forEach(function (b) {
+  b.addEventListener('click', function () {
+    prints.scrollBy({ left: Number(b.getAttribute('data-prints')) * prints.clientWidth * 0.8, behavior: 'smooth' });
+  });
+});
 var front = document.getElementById('card-front');
 var back = document.getElementById('card-back');
 var label = document.getElementById('answer-label');
