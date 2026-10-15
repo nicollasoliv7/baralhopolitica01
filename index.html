@@ -103,6 +103,12 @@ details summary::-webkit-details-marker{display:none}
 <section style="background: #16161A; color: #F3F1EC;">
 <div style="max-width: 1120px; margin: 0 auto; padding: 64px 20px; display: flex; flex-direction: column; gap: 32px;">
 <h2 style="margin: 0; font-family: 'Archivo', sans-serif; font-weight: 900; font-stretch: 80%; font-size: clamp(30px, 4vw, 44px); text-transform: uppercase; line-height: 1;">Como funciona</h2>
+<div id="vsl-wrap" hidden style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+<div style="position: relative; width: 100%; max-width: 360px; aspect-ratio: 9 / 16; border-radius: 16px; overflow: hidden; border: 2px solid #F3F1EC; background: #000;">
+<video id="vsl" src="video/vsl.mp4" poster="video/vsl-capa.jpg" muted loop playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: block;"></video>
+<button type="button" id="vsl-sound" style="position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); min-height: 44px; padding: 0 18px; border: none; border-radius: 999px; background: #8E1B2C; color: #FFFFFF; font: 700 15px 'Public Sans', sans-serif; cursor: pointer;">Ativar som</button>
+</div>
+</div>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px;">
 <div style="border: 1.5px solid #F3F1EC; border-radius: 12px; padding: 24px; display: flex; flex-direction: column; gap: 8px;">
 <span style="font-family: 'Archivo', sans-serif; font-weight: 900; font-size: 40px; color: #E0B3BA; line-height: 1;">1</span>
@@ -242,6 +248,17 @@ details summary::-webkit-details-marker{display:none}
 
 </div>
 <script>
+// Vídeo da seção "Como funciona": só aparece se video/vsl.mp4 existir.
+(function () {
+  var wrap = document.getElementById('vsl-wrap'), v = document.getElementById('vsl'), btn = document.getElementById('vsl-sound');
+  function show() { wrap.hidden = false; var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+  if (v.readyState >= 1) show(); else v.addEventListener('loadedmetadata', show);
+  btn.addEventListener('click', function () {
+    v.muted = !v.muted;
+    if (!v.muted) { v.currentTime = 0; v.play(); }
+    btn.textContent = v.muted ? 'Ativar som' : 'Desativar som';
+  });
+})();
 // Contagem real até o fechamento do carrinho (24/10, 12h de Brasília).
 (function () {
   var el = document.getElementById('countdown');

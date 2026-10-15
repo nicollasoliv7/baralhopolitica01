@@ -12,3 +12,12 @@ Página estática (um único `index.html`, sem build) do baralho para o 2º turn
 ## Publicar
 
 Qualquer hospedagem estática serve. Na Vercel: importe o repositório, sem framework e sem comando de build.
+
+## Vídeo da seção "Como funciona"
+
+Envie o vídeo para a pasta `video/` do repositório com estes nomes:
+
+- `video/vsl.mp4` (vertical, H.264, de preferência com menos de 8 MB)
+- `video/vsl-capa.jpg` (imagem que aparece enquanto o vídeo carrega)
+
+Sem esses arquivos, a seção do vídeo fica escondida.
